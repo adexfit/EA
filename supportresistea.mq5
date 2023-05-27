@@ -238,6 +238,15 @@ void ManageOpen()
 */
    
 //Trading rules using high low of candle
+   //candle 2 closes below upper resistance line and candle 1 closes above upper resistance line
+      bool buy_trend = (A2low < buff4[0]) && (A1high > buff4[0]) && (tradeLong) && (!stopTrading) && (trendTrading);    
+   //candle 2 closes above below upper support line and candle 1 closes above upper support line
+      bool buy_counter_trend = (A2low < buff6[0]) && (A1high > buff6[0]) && (tradeLong) && (!stopTrading) && (counterTrading);  
+   //candle 2 closes above lower support line and candle 1 closes below lower support line
+      bool sell_trend = (A2high > buff7[0]) && (A1low < buff7[0]) && (tradeShort) && (!stopTrading) && (trendTrading); 
+   //candle 2 closes above lower resistance line and candle 1 closes below lower resistance line
+      bool sell_counter = (A2high > buff5[0]) && (A1low < buff5[0]) && (tradeShort) && (!stopTrading) && (counterTrading); 
+ 
    
    const bool canOpenLong  = (buy_trend); //(sell_counter_trend) ;    || buy_counter_trend
    const bool canOpenShort = (sell_trend); //(sell_trend || sell_counter);   || sell_counter
